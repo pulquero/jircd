@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:jsp="http://java.sun.com/JSP/Page"
+ xmlns:c="http://java.sun.com/jsp/jstl/core"
+ xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+ xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+ xml:lang="${pageContext.request.locale.language}-${pageContext.request.locale.country}"
+ lang="${pageContext.request.locale.language}-${pageContext.request.locale.country}">
+
+<jsp:directive.page contentType="text/html"/>
+<c:url var="gatewayURL" value="gateway" scope="page"/>
+<c:choose>
+<c:when test="${fn:length(param.channel) > 0}">
+<jsp:scriptlet>
+<![CDATA[
+String refreshPeriod = application.getInitParameter("refreshPeriod");
+String refreshURL = pageContext.getAttribute("gatewayURL")+"?channel="+request.getParameter("channel");
+response.setHeader("Refresh", refreshPeriod+"; URL="+refreshURL);
+]]>
+</jsp:scriptlet>
+</c:when>
+<c:when test="${fn:length(param.query) > 0}">
+<jsp:scriptlet>
+<![CDATA[
+String refreshPeriod = application.getInitParameter("refreshPeriod");
+String refreshURL = pageContext.getAttribute("gatewayURL")+"?query="+request.getParameter("query");
+response.setHeader("Refresh", refreshPeriod+"; URL="+refreshURL);
+]]>
+</jsp:scriptlet>
+</c:when>
+</c:choose>
+<jsp:useBean id="gateway" class="jircx.servlet.Gateway" scope="session"/>
+
+<head>
+<title><fmt:message key="title.chat"/></title>
+</head>
+
+<body>
+<h1><fmt:message key="chat"/></h1>
+
+<h2><fmt:message key="channels"/></h2>
+<c:forEach var="channel" items="${gateway.channels}">
+   <a href="${gatewayURL}?channel=${fn:substring(channel, 1, -1)}"><c:out value="${channel}"/></a><jsp:text> </jsp:text>
+</c:forEach>
+
+<c:choose>
+<c:when test="${fn:length(param.channel) > 0}">
+<c:set var="channelName" scope="page" value="#${param.channel}"/>
+<h2><c:out value="${channelName}"/></h2>
+<h3><c:out value="${gateway.topics[channelName]}"/></h3>
+<ul>
+<c:forEach var="member" items="${gateway.users[channelName]}">
+   <li><c:out value="${member.prefix}"/> <a href="${gatewayURL}?query=${member.nick}"><c:out value="${member.nick}"/></a></li>
+</c:forEach>
+</ul>
+</c:when>
+<c:when test="${fn:length(param.query) > 0}">
+<h2><c:out value="${param.query}"/></h2>
+</c:when>
+</c:choose>
+
+<form>
+<textarea rows="${initParam.chatAreaRows}" cols="${initParam.chatAreaCols}" readonly="true">
+<c:forEach var="line" items="${gateway.transcript}">
+   <c:out value="${line}"/><jsp:text>&#xa;</jsp:text>
+</c:forEach>
+</textarea>
+</form>
+
+<form action="gateway?send" method="post">
+<p>
+Send:
+<select name="messageType">
+<option selected="true">Msg</option>
+<option>Action</option>
+<option>Notice</option>
+<option>Raw</option>
+</select>
+<input name="message" size="35" tabindex="1"/>
+<input type="hidden" name="channel" value="${fn:escapeXml(param.channel)}"/>
+<input type="hidden" name="query" value="${fn:escapeXml(param.query)}"/>
+<fmt:message key="send" var="sendFmtMsg"/>
+<input type="submit" value="${sendFmtMsg}"/>
+<br/>
+(shortcuts /me, /notice, /raw)
+</p>
+</form>
+
+<form action="${gatewayURL}" method="get">
+<p>
+<input type="hidden" name="channel" value="${fn:escapeXml(param.channel)}"/>
+<input type="hidden" name="query" value="${fn:escapeXml(param.query)}"/>
+<fmt:message key="reload" var="reloadFmtMsg"/>
+<input type="submit" value="${reloadFmtMsg}"/>
+</p>
+</form>
+
+<form action="gateway?join" method="post">
+<p>
+<fmt:message key="channel"/>: #<input name="channel" value="${fn:escapeXml(param.channel)}"/>
+<fmt:message key="join" var="joinFmtMsg"/>
+<input type="submit" value="${joinFmtMsg}"/>
+</p>
+</form>
+
+<form action="gateway?change" method="post">
+<p>
+<fmt:message key="nick"/>: <input name="nick" value="${fn:escapeXml(gateway.nick)}"/>
+<input type="hidden" name="channel" value="${fn:escapeXml(param.channel)}"/>
+<input type="hidden" name="query" value="${fn:escapeXml(param.query)}"/>
+<fmt:message key="change" var="changeFmtMsg"/>
+<input type="submit" value="${changeFmtMsg}"/>
+</p>
+</form>
+
+<form action="gateway?logoff" method="post">
+<p>
+<fmt:message key="disconnect" var="disconnectFmtMsg"/>
+<input type="submit" value="${disconnectFmtMsg}"/>
+</p>
+</form>
+<c:set var="quickConnect" scope="page">gateway?login&amp;host=${gateway.server}&amp;nick=${gateway.nick}&amp;user=${gateway.login}&amp;channel=${param.channel}</c:set>
+<p>
+Quick connect URL (bookmark it):
+<a href="${fn:escapeXml(quickConnect)}"><c:out value="${pageContext.request.scheme}://${pageContext.request.serverName}${pageContext.request.contextPath}/${quickConnect}"/></a>
+</p>
+</body>
+</html>

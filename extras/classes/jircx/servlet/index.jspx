@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:jsp="http://java.sun.com/JSP/Page"
+ xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+ xml:lang="${pageContext.request.locale.language}-${pageContext.request.locale.country}"
+ lang="${pageContext.request.locale.language}-${pageContext.request.locale.country}">
+
+<jsp:directive.page contentType="text/html"/>
+
+<head>
+<title><fmt:message key="title.login"/></title>
+</head>
+
+<body>
+<h1><fmt:message key="login"/></h1>
+<form action="gateway?login" method="post">
+<p>
+<fmt:message key="server"/>: <input name="host" value="irc.newServer.com"/>
+<!--
+<select name="host">
+<option selected="true">server1</option>
+<option>server2</option>
+</select>
+-->
+</p>
+<p>
+<fmt:message key="nick"/>: <input name="nick" value="newUser"/>
+<fmt:message key="user"/>: <input name="user" value="WebIRC"/>
+</p>
+<p>
+<fmt:message key="channel"/>: #<input name="channel" value="newChannel"/>
+</p>
+<p>
+<fmt:message key="connect" var="connectFmtMsg"/>
+<input type="submit" value="${connectFmtMsg}"/>
+</p>
+</form>
+</body>
+</html>
