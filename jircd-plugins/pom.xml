@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+  <groupId>net.sf.j-ircd</groupId>
+  <artifactId>jircd-parent</artifactId>
+  <version>0.7-SNAPSHOT</version>
+  </parent>
+  <groupId>net.sf.j-ircd.plugins</groupId>
+  <artifactId>jircd-plugins</artifactId>
+  <packaging>pom</packaging>
+  <name>jIRCd plugins</name>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License v2.0</name>
+			<url>http://www.gnu.org/licenses/gpl-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Tyrel Haveman</name>
+		</developer>
+		<developer>
+			<name>Mark Hale</name>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>irc</module>
+		<module>p10</module>
+		<module>ircx</module>
+		<module>bnc</module>
+		<module>misc</module>
+	</modules>
+
+	<dependencies>
+	<dependency>
+	<groupId>net.sf.j-ircd</groupId>
+	<artifactId>jircd-server</artifactId>
+	<version>${project.version}</version>
+	</dependency>
+	</dependencies>
+</project>

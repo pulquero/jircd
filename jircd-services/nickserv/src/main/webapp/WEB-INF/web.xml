@@ -1,0 +1,15 @@
+<webapp>
+<display-name>NickServ</display-name>
+
+<servlet>
+<servlet-name>NickServ</servlet-name>
+<display-name>NickServ</display-name>
+<description>NickServ IRC servlet</description>
+<servlet-class>net.sf.j_ircd.server.servlet.irc.nickserv.NickServ</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>NickServ</servlet-name>
+<url-pattern>/NickServ,isnick</url-pattern>
+</servlet-mapping>
+</webapp>

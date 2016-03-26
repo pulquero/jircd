@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+  <groupId>net.sf.j-ircd</groupId>
+  <artifactId>jircd-parent</artifactId>
+  <version>0.7-SNAPSHOT</version>
+  </parent>
+  <artifactId>jircx-jms</artifactId>
+  <name>JMS provider for IRC</name>
+  <description>
+<![CDATA[
+To register with JNDI:
+java net.sf.j_ircd.ext.jms.IRCAdaptor <TopicConnectionFactoryJNDIName> <irc://host> <TopicJNDIName> <channel>
+]]>
+  </description>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v2.1</name>
+			<url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Mark Hale</name>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+		<groupId>javax.jms</groupId>
+		<artifactId>jms-api</artifactId>
+		<version>1.1-rev-1</version>
+		<scope>provided</scope>
+		</dependency>
+	<dependency>
+	<groupId>pircbot</groupId>
+	<artifactId>pircbot</artifactId>
+	<version>1.5.0</version>
+	</dependency>
+	</dependencies>
+</project>

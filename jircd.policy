@@ -1,0 +1,8 @@
+grant {
+	permission java.util.PropertyPermission "*", "read";
+	permission java.io.FilePermission "-", "read";
+	permission java.net.SocketPermission "*", "accept";
+
+	permission net.sf.j_ircd.server.irc.CommandPermission "*";
+	permission net.sf.j_ircd.server.irc.CTCPPermission "*", "*";
+};
