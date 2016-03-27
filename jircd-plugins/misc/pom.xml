@@ -3,7 +3,7 @@
   <parent>
   <groupId>net.sf.j-ircd.plugins</groupId>
   <artifactId>jircd-plugins</artifactId>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.7</version>
   </parent>
   <artifactId>jircd-plugins-misc</artifactId>
   <name>Misc commands</name>

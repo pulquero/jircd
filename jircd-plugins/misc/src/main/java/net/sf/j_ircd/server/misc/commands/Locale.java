@@ -25,8 +25,8 @@ package net.sf.j_ircd.server.misc.commands;
 import net.sf.j_ircd.server.irc.*;
 
 /**
- * LOCALE <nick> [<language> [<COUNTRY> [<Variant>]]]
- * 601 <nick> [<language> [<COUNTRY> [<Variant>]]] :<description>
+ * LOCALE &lt;nick&gt; [&lt;language&gt; [&lt;COUNTRY&gt; [&lt;Variant&gt;]]]
+ * 601 &lt;nick&gt; [&lt;language&gt; [&lt;COUNTRY&gt; [&lt;Variant&gt;]]] :&lt;description&gt;
  * @author markhale
  */
 public class Locale implements Command {

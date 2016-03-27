@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.sf.j-ircd</groupId>
   <artifactId>jircd-parent</artifactId>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.7</version>
   <packaging>pom</packaging>
   <name>jIRCd</name>
   <description>
@@ -16,7 +16,8 @@
 		<connection>scm:git:git@github.com:pulquero/jircd.git</connection>
 		<developerConnection>scm:git:git@github.com:pulquero/jircd.git</developerConnection>
 		<url>https://github.com/pulquero/jircd</url>
-	</scm>
+	  <tag>jircd-parent-0.7</tag>
+  </scm>
 
 	<build>
 		<pluginManagement>
@@ -39,12 +40,30 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-javadoc-plugin</artifactId>
+		      <version>2.9.1</version>
+		      <executions>
+		        <execution>
+		          <configuration>
+		          	<encoding>utf8</encoding>
+		          </configuration>
+		          <goals>
+		            <goal>jar</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		</plugins>
 	</build>
 
 	<modules>
 		<module>jircd-server</module>
 		<module>jircd-plugins</module>
 		<module>jircd-services</module>
+		<module>jircd-bundle</module>
 
 		<module>jircx-jms</module>
 		<module>jircx-log</module>

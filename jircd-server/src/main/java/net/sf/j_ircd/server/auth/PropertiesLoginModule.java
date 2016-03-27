@@ -49,9 +49,9 @@ import javax.security.auth.spi.LoginModule;
  * clear_first_pass
  *
  * Property file format:
- * <name>=<password>
- * [<name>.host=<host pattern>]
- * [<name>.port=<port>]
+ * &lt;name&gt; = &lt;password&gt;
+ * [&lt;name&gt;.host = &lt;host pattern&gt;]
+ * [&lt;name&gt;.port = &lt;port&gt;]
  * @author markhale
  */
 public class PropertiesLoginModule implements LoginModule {

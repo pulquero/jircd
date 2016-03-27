@@ -10,5 +10,5 @@ set DEBUG_OPTS=
 rem set JAAS_OPTS=-Djava.security.auth.login.config=jaas.config
 rem set SSL_OPTS=-Djavax.net.ssl.keyStore=jircd.jks -Djavax.net.ssl.keyStorePassword=passphrase
 rem set SECURITY_OPTS=-Djava.security.manager -Djava.security.policy=jircd.policy
-set JIRCD_CLASSPATH=log4j.jar;jircd-server.jar;GeoIP.jar;AgentMBean.jar;.
+set JIRCD_CLASSPATH=jircd-server-${project.version}.jar;lib\*.jar;.;agent-mbean.jar;.
 java %JMX_OPTS% %LOG_OPTS% %DEBUG_OPTS% %SSL_OPTS% -cp %JIRCD_CLASSPATH% net.sf.mbeans.agent.AgentMBean net.sf.mbeans.TaskScheduler file:agent.start file:agent.stop

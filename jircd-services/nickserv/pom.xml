@@ -3,7 +3,7 @@
   <parent>
   <groupId>net.sf.j-ircd.services</groupId>
   <artifactId>jircd-services</artifactId>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.7</version>
   </parent>
   <artifactId>jircd-services-nickserv</artifactId>
   <packaging>war</packaging>
